@@ -58,7 +58,7 @@
     if (!this.over) {
       SnakeGame.interval1 = window.setInterval(function(){
         this.step();
-      }.bind(this), 300);
+      }.bind(this), 100);
 
       SnakeGame.interval2 = window.setInterval(function(){
         this.generateApples();

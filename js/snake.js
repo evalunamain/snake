@@ -17,9 +17,13 @@
     var incr = Snake.DIRS[snake.dir];
     newSegment[0] += incr[0];
     newSegment[1] += incr[1];
+    console.log("Before segments: " + JSON.stringify(this.segments));
 
-    this.segments.pop();
     this.segments.unshift(newSegment);
+    this.segments.pop();
+    console.log("New segment: " + JSON.stringify(newSegment));
+    console.log("All segments: " + JSON.stringify(this.segments));
+
     this.board.anyCollisions();
   };
 
@@ -57,6 +61,8 @@
     var diffY = snakeEnd[1] - snakePenultimate[1];
     var otherSegments = this.snake.segments.slice(1);
     var board = this;
+
+    // console.log("Other segments: " + JSON.stringify(otherSegments));
 
     this.apples.forEach(function (apple) {
       if (snakeFront[0] === apple[0] && snakeFront[1] === apple[1]) {
