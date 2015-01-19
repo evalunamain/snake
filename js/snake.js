@@ -62,8 +62,6 @@
     var otherSegments = this.snake.segments.slice(1);
     var board = this;
 
-    // console.log("Other segments: " + JSON.stringify(otherSegments));
-
     this.apples.forEach(function (apple) {
       if (snakeFront[0] === apple[0] && snakeFront[1] === apple[1]) {
         var idx = board.apples.indexOf(apple);
