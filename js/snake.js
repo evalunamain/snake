@@ -5,7 +5,7 @@
 
   var Snake = SnakeGame.Snake = function(options){
     this.dir = options.dir;
-    this.segments = options.segments; // array of grid coords
+    this.segments = options.segments;
     this.board = options.board;
     };
 
@@ -17,13 +17,10 @@
     var incr = Snake.DIRS[snake.dir];
     newSegment[0] += incr[0];
     newSegment[1] += incr[1];
-    console.log("Before segments: " + JSON.stringify(this.segments));
 
     this.segments.unshift(newSegment);
     this.segments.pop();
-    console.log("New segment: " + JSON.stringify(newSegment));
-    console.log("All segments: " + JSON.stringify(this.segments));
-
+  
     this.board.anyCollisions();
   };
 
@@ -73,7 +70,6 @@
 
     if (snakeFront[0] > Board.SIZE || snakeFront[1] > Board.SIZE ||
         snakeFront[0] < 0 || snakeFront[1] < 0) {
-          console.log("You ran out of bounds!! " + JSON.stringify(snakeFront));
           throw new SnakeError("You lost!!");
     }
 
