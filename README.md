@@ -1,2 +1,3 @@
 # snake
-snake game in javascript for the browser
+
+Snake game in javascript for the browser.
