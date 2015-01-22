@@ -5,11 +5,11 @@
 
   var View = SnakeGame.View = function($el) {
     this.over = false;
-    this.pause = false;
+    this.pause = true;
     this.canvas = $el;
     this.board = new SnakeGame.Board();
     this.generateApples();
-    this.startIntervals();
+    this.startGame();
   };
 
   View.prototype.bindKeys = function(){
@@ -73,6 +73,12 @@
   };
 
   // call snake move and redraw whole board
+  View.prototype.startGame = function (){
+    this.setUpBoard();
+    this.render();
+    this.bindKeys();
+  },
+
   View.prototype.step = function(){
     this.setUpBoard();
     this.render();
