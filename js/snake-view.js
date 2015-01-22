@@ -27,6 +27,7 @@
       } else if (event.which === 37) { // left
         board.snake.turn("W");
       }  else if (event.which === 32) {
+        console.log("you pressed pause");
         if (view.pause) {
           view.startIntervals();
         } else {
