@@ -22,16 +22,17 @@
   View.SPEEDS = {
     "worm": 300,
     "rattlesnake": 200,
-    "black-mamba": 300
+    "black-mamba": 100
   };
 
   View.prototype.prepareGame = function (options) {
     var that = this;
     options.find("#difficulty-settings").submit(function() {
-      $("#start-game").blur();
       event.preventDefault();
       that.speed = View.SPEEDS[event.currentTarget.difficulty.value];
+      console.log(that.speed);
       that.startInterval();
+      $("#start-game").blur();
       $(window).on("keydown", that.handleKey.bind(that));
     });
   };
@@ -89,10 +90,11 @@
 
   View.prototype.startInterval = function () {
     this.pause = false;
+    var that = this;
 
     SnakeGame.interval = window.setInterval(
-      this.step.bind(this),
-      this.speed
+      that.step.bind(that),
+      that.speed
     );
   };
 

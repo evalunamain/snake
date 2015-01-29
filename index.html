@@ -3,24 +3,28 @@
 <head>
   <meta charset="utf-8">
   <title>Snake!!</title>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="./css/snake.css">
 </head>
 <body>
-  <div class="board group"></div>
+  <div class="game group">
+    <h1 class="title">Snake</h1>
+    <section class="board group"></section>
 
-  <section class="game-options">
-    <h3>Score</h3>
-    <p class="score">0</p>
+    <section class="game-options">
+      <!-- <h2>Score</h2>
+      <p class="score">0</p> -->
 
-    <h3>Difficulty</h3>
-    <form id="difficulty-settings">
-      <input type="radio" name="difficulty" value="worm">Easy<br>
-      <input type="radio" name="difficulty" value="rattlesnake" checked>Medium<br>
-      <input type="radio" name="difficulty" value="black-mamba">Hard<br>
+      <form id="difficulty-settings">
+        <h2>Difficulty</h2>
+        <input type="radio" name="difficulty" value="worm">Worm<br>
+        <input type="radio" name="difficulty" value="rattlesnake" checked>Rattlesnake<br>
+        <input type="radio" name="difficulty" value="black-mamba">Black Mamba<br>
 
-      <button type="submit" name="submit" id="start-game">Start Game</button>
-    </form>
-  </section>
+        <button type="submit" name="submit" id="start-game">Start Game</button>
+      </form>
+    </section>
+  </div>
 
   <script src="./js/jquery-2.1.1.js"></script>
   <script src="./js/snake.js"></script>

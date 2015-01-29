@@ -1,4 +1,4 @@
-html, ul, li, div, p, h1 {
+html, ul, li, div, p, h2, input, form {
   margin: 0;
   padding: 0;
   border: 0;
@@ -7,16 +7,54 @@ html, ul, li, div, p, h1 {
   background: transparent;
 }
 
+body {
+  background: #eee;
+  font-family: "Open Sans", Helvetica, Roboto, Arial, sans-serif;
+}
+
+input, button {
+  outline: 0;
+  padding: 5px;
+  margin: 10px 5px;
+}
+
+form {
+  margin-top: 50px;
+}
+
 ul {
   list-style: none;
 }
 
+h2 {
+  font-weight: bold;
+}
+
+.game {
+  width: 900px;
+  margin: 20px auto;
+}
+
+.title {
+  margin: 30px 100px;
+}
+
+.game-options {
+  display: inline-block;
+  height: 510px;
+  padding: 40px 80px;
+}
 
 .board {
   float: left;
-  /*display: inline-block;*/
-  background: hsl(150, 25%, 75%);
-  border: 10px solid hsl(150, 50%, 25%);
+  background: hsl(150, 25%, 85%);
+  border-style: solid;
+  border-top: 15px solid hsl(150, 40%, 30%);
+  border-right: 20px solid hsl(150, 40%, 50%);
+  border-bottom: 10px solid hsl(150, 40%, 30%);
+  border-left: 20px solid hsl(150, 40%, 50%);
+  -webkit-box-shadow: inset 0px 5px 5px 1px rgba(0, 0, 0, .3);
+  box-shadow: inset 0px 5px 5px 1px rgba(0, 0, 0, .3);
 }
 
 .group:after {
@@ -37,13 +75,10 @@ li {
 
 .apple {
   background: red;
+  border-radius: 50%;
 }
 
 .snake {
   background: green;
-}
-
-.game-options {
-  float: left;
-  margin: 20px 100px;
+  border-radius: 2px;
 }
