@@ -26,8 +26,8 @@
   };
 
   Apple.prototype.replace = function () {
-    var x = Math.floor(Math.random() * this.board.SIZE);
-    var y = Math.floor(Math.random() * this.board.SIZE);
+    var x = Math.floor(Math.random() * this.board.SIZE),
+      y = Math.floor(Math.random() * this.board.SIZE);
 
     this.position = new Coord(x,y);
     this.board.snake && this.overlapSnake();
@@ -52,8 +52,9 @@
   };
 
   Snake.prototype.center = function () {
-    var centerCoord = Math.floor(this.board.SIZE/2)
-    var center = new Coord(centerCoord, centerCoord);
+    var centerCoord = Math.floor(this.board.SIZE/2),
+      center = new Coord(centerCoord, centerCoord);
+
     this.segments = [center];
     this.dir = "N";
   };
