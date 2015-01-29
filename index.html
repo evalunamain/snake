@@ -2,18 +2,18 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Snake!!</title>
+  <title>Snake!</title>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="./css/snake.css">
 </head>
 <body>
-  <div class="game group">
+  <div id="game" class="group">
     <h1 class="title">Snake</h1>
     <section class="board group"></section>
 
     <section class="game-options">
-      <!-- <h2>Score</h2>
-      <p class="score">0</p> -->
+      <h2>Score</h2>
+      <p class="game-score">0</p>
 
       <form id="difficulty-settings">
         <h2>Difficulty</h2>
@@ -24,16 +24,21 @@
         <button type="submit" name="submit" id="start-game">Start Game</button>
       </form>
     </section>
+    <section class="message">
+      <h1>You lose! Want to go again?</h1>
+      <button type="submit" name="submit" id="reset-game">Yes!</button>
+    </section>
   </div>
 
   <script src="./js/jquery-2.1.1.js"></script>
   <script src="./js/snake.js"></script>
   <script src="./js/snake-view.js"></script>
+  <script src="./js/snake-controller.js"></script>
 
   <script>
     $(function(){
-      var gameView = new SnakeGame.View($(".board"));
-      gameView.prepareGame($(".game-options"));
+      this.gameView = new SnakeGame.View();
+      this.gameView.prepareGame();
     });
   </script>
 </body>

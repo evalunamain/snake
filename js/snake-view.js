@@ -3,13 +3,21 @@
     window.SnakeGame = {};
   }
 
-  var View = SnakeGame.View = function($el) {
-    this.$el = $el;
+  var View = SnakeGame.View = function () {
+    this.$gameEl = $("#game");
 
-    this.board = new SnakeGame.Board(25);
+    this.$boardEl = this.$gameEl.find(".board");
+    this.$settingsEl = this.$gameEl.find("#difficulty-settings");
+    this.$scoreEl = this.$gameEl.find(".game-score");
+
+    this.$messageEl = this.$gameEl.find(".message");
+    this.$resetEl = this.$messageEl.find("#reset-game");
+
+    this.board = new SnakeGame.Board(25, this);
     this.setUpBoard();
-    this.speed = 200;
+    this.render();
 
+    $(window).on("keydown", this.handleKey.bind(this));
   };
 
   View.NAVKEYS = {
@@ -25,15 +33,20 @@
     "black-mamba": 50
   };
 
-  View.prototype.prepareGame = function (options) {
+  View.prototype.prepareGame = function () {
+    this.score = 0;
+    this.speed = 0;
+
     var that = this;
-    options.find("#difficulty-settings").submit(function() {
+
+    this.$settingsEl.on("submit", function() {
+      that.$settingsEl.off();
       event.preventDefault();
-      that.speed = View.SPEEDS[event.currentTarget.difficulty.value];
-      console.log(that.speed);
-      that.startInterval();
+
+      that.speed = View.SPEEDS[event.target.difficulty.value];
       $("#start-game").blur();
-      $(window).on("keydown", that.handleKey.bind(that));
+
+      that.startInterval();
     });
   };
 
@@ -49,7 +62,7 @@
     }
   };
 
-  View.prototype.render = function(){
+  View.prototype.render = function () {
     this.updateClasses(this.board.snake.segments, "snake");
     this.updateClasses([this.board.apple.position], "apple");
   };
@@ -63,7 +76,7 @@
     }.bind(this));
   };
 
-  View.prototype.setUpBoard = function(){
+  View.prototype.setUpBoard = function () {
     var html = "";
 
     for (var i = 0; i < this.board.SIZE; i++) {
@@ -74,18 +87,23 @@
       html += "</ul>";
     }
 
-    this.$el.html(html);
-    this.$li = this.$el.find("li");
+    this.$boardEl.html(html);
+    this.$li = this.$boardEl.find("li");
   };
 
-  View.prototype.step = function(){
+  View.prototype.step = function () {
     if (this.board.snake.segments.length > 0) {
       this.board.snake.move();
       this.render();
     } else {
-      console.log("You lose!");
       this.stopInterval();
+      this.resetGame();
     }
+  };
+
+  View.prototype.addScore = function () {
+    this.score += 50;
+    this.$scoreEl.text(this.score);
   };
 
   View.prototype.startInterval = function () {
@@ -100,7 +118,29 @@
 
   View.prototype.stopInterval = function () {
     this.pause = true;
+
     window.clearInterval(SnakeGame.interval);
   };
+
+  View.prototype.resetGame = function () {
+    this.$messageEl.addClass("active");
+    var that = this;
+
+    this.$resetEl.on("click", function (event)  {
+      event.preventDefault();
+
+      that.$resetEl.off();
+
+      that.$messageEl.removeClass("active");
+
+      that.$scoreEl.text(0);
+      that.board.snake.center();
+      that.board.apple.replace();
+      that.render();
+
+      that.prepareGame();
+
+    })
+  }
 
 })();

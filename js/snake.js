@@ -45,15 +45,17 @@
     }
   };
 
-  var Snake = SnakeGame.Snake = function (board){
-    this.dir = "N";
+  var Snake = SnakeGame.Snake = function (board) {
     this.board = board;
+    this.center();
+    this.growth = 0;
+  };
 
-    var centerCoord = Math.floor(board.SIZE/2)
+  Snake.prototype.center = function () {
+    var centerCoord = Math.floor(this.board.SIZE/2)
     var center = new Coord(centerCoord, centerCoord);
     this.segments = [center];
-
-    this.growth = 0;
+    this.dir = "N";
   };
 
   Snake.DIRS = {
@@ -66,6 +68,7 @@
   Snake.prototype.eatApple = function () {
     if (this.head().equals(this.board.apple.position)) {
       this.growth += 2;
+      this.board.view.addScore();
       return true;
     } else {
       return false;
@@ -82,7 +85,7 @@
     }
 
     for (var i = 0; i < this.segments.length - 1; i++) {
-      if (this.segments[i].equals(this.head)) {
+      if (this.segments[i].equals(this.head())) {
         return false;
       }
     }
@@ -105,10 +108,11 @@
 
     if (!this.isValidMove()) {
       this.segments = [];
+      this.board.view.over = true;
     }
   };
 
-  Snake.prototype.turn = function(newDir){
+  Snake.prototype.turn = function (newDir) {
     if ((this.segments.length > 1) &&
     Snake.DIRS[this.dir].isOpposite(Snake.DIRS[newDir])) {
       return;
@@ -117,8 +121,10 @@
     }
   };
 
-  var Board = SnakeGame.Board = function (size){
+  var Board = SnakeGame.Board = function (size, view) {
+    console.log("new board");
     this.SIZE = size;
+    this.view = view;
 
     this.apple = new Apple(this);
     this.snake = new Snake(this);

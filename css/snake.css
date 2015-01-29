@@ -1,4 +1,4 @@
-html, ul, li, div, p, h2, input, form {
+html, ul, li, div, p, h2, button, input, form {
   margin: 0;
   padding: 0;
   border: 0;
@@ -13,9 +13,13 @@ body {
 }
 
 input, button {
-  outline: 0;
+  outline: none;
   padding: 5px;
   margin: 10px 5px;
+}
+
+input:checked {
+  outline: none;
 }
 
 form {
@@ -30,7 +34,24 @@ h2 {
   font-weight: bold;
 }
 
-.game {
+button {
+  color: white;
+  border-radius: 4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+#start-game, #reset-game {
+  background: hsl(150, 40%, 50%);
+  letter-spacing: 1px;
+  padding: 5px 25px;
+}
+
+#reset-game {
+  margin-top: 15px;
+}
+
+
+#game {
   width: 900px;
   margin: 20px auto;
 }
@@ -42,7 +63,25 @@ h2 {
 .game-options {
   display: inline-block;
   height: 510px;
-  padding: 40px 80px;
+  padding: 40px 70px;
+}
+
+.message {
+  position: fixed;
+  display: none;
+  bottom: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 25px;
+  text-align: center;
+  color: hsl(0, 100%, 50%);
+  background:  hsl(0, 0%, 95%);
+  border: 2px solid hsl(0, 0%, 85%);
+  box-shadow: 3px 3px 1px 1px hsl(0, 0%, 80%);
+}
+
+.active {
+  display: block;
 }
 
 .board {
