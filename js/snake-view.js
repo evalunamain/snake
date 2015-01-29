@@ -20,9 +20,9 @@
   };
 
   View.SPEEDS = {
-    "worm": 300,
-    "rattlesnake": 200,
-    "black-mamba": 100
+    "worm": 200,
+    "rattlesnake": 100,
+    "black-mamba": 50
   };
 
   View.prototype.prepareGame = function (options) {
