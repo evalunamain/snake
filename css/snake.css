@@ -1,15 +1,22 @@
-html, ul, li, div, p {
+html, ul, li, div, p, h1 {
   margin: 0;
   padding: 0;
   border: 0;
+  font: inherit;
+  text-align: inherit;
   background: transparent;
 }
 
+ul {
+  list-style: none;
+}
+
+
 .board {
-  /*border-bottom: 5px solid black;*/
-  width: 750px;
-  height: 750px;
-  display: block;
+  float: left;
+  /*display: inline-block;*/
+  background: hsl(150, 25%, 75%);
+  border: 10px solid hsl(150, 50%, 25%);
 }
 
 .group:after {
@@ -19,29 +26,24 @@ html, ul, li, div, p {
 }
 
 ul {
-  width: 30px;
-  height: 750px;
-  display: block;
-  list-style-type: none;
-  float: left;
-  margin: 0 auto;
+
 }
 
 li {
-  background: gray;
-  width: auto;
-  height: 26px;
-  border: 2px dashed white;
-  /*float: left;*/
-  display: block;
-  margin: 0 auto;
-}
-
-.snake {
-  background: green;
-  opacity: 1;
+  float: left;
+  width: 22px;
+  height: 22px;
 }
 
 .apple {
   background: red;
+}
+
+.snake {
+  background: green;
+}
+
+.game-options {
+  float: left;
+  margin: 20px 100px;
 }

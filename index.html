@@ -6,18 +6,31 @@
   <link rel="stylesheet" type="text/css" href="./css/snake.css">
 </head>
 <body>
-  <div class="board group">
-  </div>
+  <div class="board group"></div>
+
+  <section class="game-options">
+    <h3>Score</h3>
+    <p class="score">0</p>
+
+    <h3>Difficulty</h3>
+    <form id="difficulty-settings">
+      <input type="radio" name="difficulty" value="worm">Easy<br>
+      <input type="radio" name="difficulty" value="rattlesnake" checked>Medium<br>
+      <input type="radio" name="difficulty" value="black-mamba">Hard<br>
+
+      <button type="submit" name="submit" id="start-game">Start Game</button>
+    </form>
+  </section>
 
   <script src="./js/jquery-2.1.1.js"></script>
   <script src="./js/snake.js"></script>
   <script src="./js/snake-view.js"></script>
 
   <script>
-  $(document).on("ready", function(){
-    var view = new SnakeGame.View($('.board'));
-  });
-
+    $(function(){
+      var gameView = new SnakeGame.View($(".board"));
+      gameView.prepareGame($(".game-options"));
+    });
   </script>
 </body>
 </html>
